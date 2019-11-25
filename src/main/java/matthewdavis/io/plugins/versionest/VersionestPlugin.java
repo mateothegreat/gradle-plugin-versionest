@@ -17,6 +17,8 @@ public class VersionestPlugin implements Plugin<Project> {
     @Override
     public void apply(Project project) {
 
+        project.getExtensions().create("versionest", VersionestExtension.class);
+
         project.getTasks().create("getCurrentVersion", GetVersion.class).setGroup("versionest");
         project.getTasks().create("createVersionFile", CreateVersionFile.class).setGroup("versionest");
         project.getTasks().create("bumpMajorVersion", BumpMajorVersion.class).setGroup("versionest");

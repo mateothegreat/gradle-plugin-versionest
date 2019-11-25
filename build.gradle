@@ -34,7 +34,7 @@ configurations {
 apply plugin: 'com.bmuschko.nexus'
 
 group = 'gradle.plugins'
-version = '0.0.23'
+version = '0.0.30'
 
 repositories {
 
@@ -49,7 +49,6 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok:1.18.10'
 
 }
-
 
 nexus {
 
