@@ -33,13 +33,14 @@ configurations {
 
 apply plugin: 'com.bmuschko.nexus'
 
-
 group = 'gradle.plugins'
-version = '0.0.15'
+version = '0.0.23'
+
 repositories {
 
     mavenCentral()
     jcenter()
+    
 }
 
 dependencies {

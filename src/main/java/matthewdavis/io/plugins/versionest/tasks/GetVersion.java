@@ -12,14 +12,9 @@ import java.util.regex.Pattern;
 
 public class GetVersion extends DefaultTask {
 
-    @TaskAction
-    public void getCurrentVersion() throws IOException {
-
-        System.out.println("ktuy");
+    public static Version getCurrentVersionFromFile() throws IOException {
 
         String file = Files.readString(Path.of("version.properties"));
-
-        System.out.println(file);
 
         Pattern pattern = Pattern.compile("(\\d+)\\.(\\d+)\\.(\\d+)");
         Matcher matcher = pattern.matcher(file);
@@ -27,27 +22,31 @@ public class GetVersion extends DefaultTask {
         matcher.find();
 
         Version version = new Version();
-        System.out.println(matcher.groupCount());
-        System.out.println(matcher.toString());
 
-        System.out.println(4444);
-        System.out.println(matcher.group(1));
-        System.out.println(222);
-        System.out.println(matcher.group(2));
-        System.out.println(1333);
-        System.out.println(matcher.group(3));
+        if (matcher.groupCount() == 3) {
 
+            version.setMajor(Integer.parseInt(matcher.group(1)));
+            version.setMinor(Integer.parseInt(matcher.group(2)));
+            version.setPatch(Integer.parseInt(matcher.group(3)));
 
-//        if (matcher.groupCount() == 3) {
+        } else {
 
-        version.setMajor(Integer.parseInt(matcher.group(1)));
-        version.setMinor(Integer.parseInt(matcher.group(2)));
-        version.setPatch(Integer.parseInt(matcher.group(3)));
+            System.out.println("ERROR: invalid format for version.properties");
+        }
 
-//        }
+        return version;
 
+    }
+
+    @TaskAction
+    public String getCurrentVersion() throws IOException {
+
+        Version version = getCurrentVersionFromFile();
 
         System.out.println(version);
+
+        return version.getMajor() + "." + version.getMinor() + "." + version.getPatch();
+
     }
 
 }
