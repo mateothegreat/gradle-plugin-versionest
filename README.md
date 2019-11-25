@@ -25,7 +25,7 @@ buildscript {
 
     dependencies {
 
-        classpath group: 'gradle.plugins', name: 'versionest', version: '0.0.23'
+        classpath group: 'gradle.plugins', name: 'versionest', version: '0.0.30'
 
     }
 
