@@ -10,6 +10,13 @@ import java.io.IOException;
 
 public class CreateVersionFile extends DefaultTask {
 
+    /**
+     * Writes semantic version string to version.properties.
+     *
+     * @param version Version object
+     *
+     * @throws IOException Throws exception when version.properties cannot be found.
+     */
     public static void writeFile(Version version) throws IOException {
 
         BufferedWriter writer = new BufferedWriter(new FileWriter("version.properties"));
@@ -19,6 +26,11 @@ public class CreateVersionFile extends DefaultTask {
 
     }
 
+    /**
+     * Gradle task for creating the version.properties file with the defaults.
+     *
+     * @throws IOException Throws exception when version.properties cannot be found.
+     */
     @TaskAction
     public void createVersionFile() throws IOException {
 

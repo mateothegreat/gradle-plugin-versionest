@@ -10,8 +10,18 @@ import java.nio.file.Path;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Handles retrieving the semantic version from a version.properties file.
+ */
 public class GetVersion extends DefaultTask {
 
+    /**
+     * Returns a {@link Version} object which is parsed from the version.properties file.
+     *
+     * @return Semantic version object ie. ("1.2.3").
+     *
+     * @throws IOException Throws when version.properties cannot be found.
+     */
     public static Version getCurrentVersionFromFile() throws IOException {
 
         String file = Files.readString(Path.of("version.properties"));
@@ -38,6 +48,14 @@ public class GetVersion extends DefaultTask {
 
     }
 
+
+    /**
+     * Returns and outputs the current version parsed from the version.properties file.
+     *
+     * @return Semantic version string ie. ("1.2.3").
+     *
+     * @throws IOException Throws when version.properties cannot be found.
+     */
     @TaskAction
     public String getCurrentVersion() throws IOException {
 
@@ -45,7 +63,7 @@ public class GetVersion extends DefaultTask {
 
         System.out.println(version);
 
-        return version.getMajor() + "." + version.getMinor() + "." + version.getPatch();
+        return version.toString();
 
     }
 

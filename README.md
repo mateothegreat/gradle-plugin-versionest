@@ -5,7 +5,7 @@ Version information is stored and read from "versioning.properties".
 
 ![screenshot](screenshot.png)
 
-# Setup:
+# Setup
 
 1. Configure build.gradle with the following at a minimum:
 
@@ -39,7 +39,7 @@ version = getCurrentVersion()
 0.0.0
 ```
 
-Usage:
+# Usage
 
 ```bash
 Versionest tasks
