@@ -1,0 +1,74 @@
+buildscript {
+
+    repositories {
+
+        jcenter()
+
+    }
+
+    dependencies {
+
+        classpath 'com.bmuschko:gradle-nexus-plugin:2.3.1'
+
+    }
+
+}
+
+plugins {
+
+    id 'java'
+    id 'java-gradle-plugin'
+    id 'maven-publish'
+
+}
+configurations {
+
+    compileOnly {
+
+        extendsFrom annotationProcessor
+
+    }
+
+}
+
+apply plugin: 'com.bmuschko.nexus'
+
+
+group = 'gradle.plugins'
+version = '0.0.15'
+repositories {
+
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+
+    compileOnly 'org.projectlombok:lombok:1.18.10'
+    annotationProcessor 'org.projectlombok:lombok:1.18.10'
+
+}
+
+
+nexus {
+
+    sign = false
+
+    repositoryUrl = System.getenv('NEXUS_BASE') ?: 'https://nexus.matthewdavis.io/repository/gradle.plugins'
+
+}
+
+gradlePlugin {
+
+    plugins {
+
+        versionest {
+
+            id = 'versionest'
+            implementationClass = 'matthewdavis.io.plugins.versionest.VersionestPlugin'
+
+        }
+
+    }
+
+}
