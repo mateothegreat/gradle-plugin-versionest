@@ -30,8 +30,8 @@ buildscript {
 
 }
 
-apply from: 'versioning.gradle'
-version = getCurrentVersion()
+apply plugin: 'versionest'
+version = versionest.version.toString()
 ```
 2. Create a file called "version.properties" with the following line:
 
