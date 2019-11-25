@@ -10,15 +10,22 @@ import org.gradle.api.Project;
 public class VersionestPlugin implements Plugin<Project> {
 
     /**
-     * Add gradle tasks.
+     * Add gradle tasks & extension.
      *
      * @param project Project passed in by gradle.
      */
     @Override
     public void apply(Project project) {
 
+        //
+        // Add the "versionest" extension so that the current version
+        // can be read as a variable into build.gradle.
+        //
         project.getExtensions().create("versionest", VersionestExtension.class);
 
+        //
+        // Add tasks.
+        //
         project.getTasks().create("getCurrentVersion", GetVersion.class).setGroup("versionest");
         project.getTasks().create("createVersionFile", CreateVersionFile.class).setGroup("versionest");
         project.getTasks().create("bumpMajorVersion", BumpMajorVersion.class).setGroup("versionest");
