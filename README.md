@@ -1,7 +1,8 @@
 # versionest gradle plugin
 
 Auto-magically handles version based on semantic versioning.
-Version information is stored and read from "versioning.properties".
+Version information is stored and read from "version.properties".
+This plugin exposes tasks to bump the version and read it into `build.gradle`.
 
 ![screenshot](screenshot.png)
 
